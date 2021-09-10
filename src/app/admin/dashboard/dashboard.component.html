@@ -1,0 +1,70 @@
+<div class="row">
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{TotalIncome | currency: 'INR' : 'symbol' : '1.0-0'}}<sup style="font-size: 20px"></sup></h3>
+        <p>Total Income</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-piggy-bank"></i>
+      </div>
+      <!-- <a [routerLink]="['/admin/fund']" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>{{TotalExpenses | currency: 'INR' : 'symbol' : '1.0-0'}}</h3>
+
+        <p>Total Expenses</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-money-check-alt"></i>
+      </div>
+      <!-- <a [routerLink]="['/admin/users']" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>{{NetBalance | currency: 'INR' : 'symbol' : '1.0-0'}}</h3>
+
+        <p>Net Balance</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-chart-bar"></i>
+      </div>
+      <!-- <a [routerLink]="['/admin/fund']" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+    </div>
+  </div>
+</div>
+
+<div class="m-portlet">
+  <div class="m-portlet__body m-portlet__body--no-padding">
+    <div class="row m-row--no-padding m-row--col-separator-xl">
+      <div class="col-xl-12">
+        <div class="m-widget14">
+          <div class="m-widget14__header">
+            <h3 class="m-widget14__title">
+              Finance
+              <mat-button-toggle-group name="option" style="width: 40%;float: right;font-size: 1rem;">
+                <mat-button-toggle value="1" style="width: 25%" (click)="GetChartData(1)" >Last Month</mat-button-toggle>
+                <mat-button-toggle value="2" style="width: 25%" (click)="GetChartData(2)" >Last 6 Month</mat-button-toggle>
+                <mat-button-toggle value="3" style="width: 25%" (click)="GetChartData(3)" >Last Year</mat-button-toggle>
+                <mat-button-toggle value="4" style="width: 25%" (click)="randdatepicker.click();">Custom Date</mat-button-toggle>
+              </mat-button-toggle-group>
+              <input type="text" #randdatepicker placeholder="Daterangepicker" bsDaterangepicker style="float: right;right: 2%;border: 0px;padding: 0px;margin: 0px;width: 0px;" (bsValueChange)="GetChartData($event)">
+            </h3>
+          </div>
+          <div id="financechart" style="width: 100%; height: 370px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

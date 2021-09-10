@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-xl-3 col-lg-4">
+    <div class="m-portlet m-portlet--full-height">
+      <div class="m-portlet__body">
+        <div *ngFor="let user of main_member;let i=index;">
+          <div [ngClass]="{'active_message_user': ViewUserId === user.id }" class="m-card-profile" (click)="fillMainMemberData(user)">
+            <div class="m-card-profile__title m--hide">
+              Your Profile
+            </div>
+            <div class="m-card-profile__pic">
+              <!-- <div class="text-right">
+                <mat-icon class="DeleteUser" (click)="DeleteUser(user)" >clear</mat-icon>
+              </div> -->
+              <div class="m-card-profile__pic-wrapper">
+                <button ngfSelect [(files)]="files" accept="image/*" multiple="1" style="background-color: transparent;border: transparent;cursor: pointer;" (filesChange)="UpdateUserProfilePic()">
+                  <img src="{{ user.profile_pic ? user.profile_pic : 'http://temple.etechlab.in/assets/app/media/img/users/img_avatar.png' }}" alt="" style="width: 90px;height: 90px;">
+                </button>
+              </div>
+            </div>
+            <div class="m-card-profile__details">
+              <span class="m-card-profile__name" style="word-break: break-all;">{{user.first_name}} {{user.last_name}}</span>
+              <a href="javascript:" class="m-card-profile__email m-link" style="word-break: break-all;">{{user.email}}</a>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+        <div *ngFor="let newuser of addUser;let i=index;">
+          <div class="m-card-profile">
+            <div class="m-card-profile__title m--hide">
+              Your Profile
+            </div>
+            <div class="m-card-profile__pic">
+              <!-- <div class="text-right">
+                <mat-icon class="DeleteUser" (click)="DeleteAvatar(i)">clear</mat-icon>
+              </div> -->
+              <div class="m-card-profile__pic-wrapper">
+                <button ngfSelect [(files)] = "files" accept="image/*" multiple="1" style="background-color: transparent;border: transparent;cursor: pointer;">
+                  <img src="../../../../assets/app/media/img/users/img_avatar.png" alt="">
+                </button>
+              </div>
+            </div>
+            <div class="m-card-profile__details">
+              <span class="m-card-profile__name"></span>
+              <a href="" class="m-card-profile__email m-link"></a>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-9 col-lg-8">
+    <div class="m-portlet m-portlet--full-height m-portlet--tabs">
+      <form class="m-form m-form--label-align-right" [formGroup]="userForm">
+        <div class="m-portlet__body">
+          <div class="m-form__section m-form__section--first">
+            <div class="m-form__heading">
+              <h3 class="m-form__heading-title">Personal Details</h3>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">First Name:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="first name" formControlName="first_name" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">Middle Name:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="middle name" formControlName="middle_name">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">Last Name:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="last name" formControlName="last_name" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">Email:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="email" autocomplete="off" type="email" formControlName="email">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">Phone no.:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <mat-icon matPrefix>local_phone</mat-icon>
+                  <input matInput placeholder="phone no" formControlName="phone_no" required numbersOnly maxlength="10">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <label class="col-lg-2 col-form-label">Date of birth:</label>
+              <div class="col-lg-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birth_date" [max]="currentData" required (focus)="picker.open();" (click)="picker.open();">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+        <div class="m-portlet__foot m-portlet__foot--fit">
+          <div class="m-form__actions m-form__actions">
+            <div class="row">
+              <div class="col-lg-6 text-center">
+                <button mat-raised-button color="primary" (click)="onSubmit();">Submit</button>&nbsp; &nbsp;
+                <button mat-raised-button type="reset">Reset</button>&nbsp;&nbsp;
+                <button mat-raised-button (click)="onCancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
